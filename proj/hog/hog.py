@@ -336,6 +336,15 @@ def make_averaged(original_function, trials_count=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def print_and_return(*args):
+        total_sum = 0
+        for i in range(trials_count):
+            total_sum += original_function(*args)
+        result = total_sum / trials_count
+        return result
+    return print_and_return
+
+
     # END PROBLEM 8
 
 

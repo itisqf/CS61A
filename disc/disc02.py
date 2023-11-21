@@ -41,6 +41,15 @@ def make_keeper(n):
             i += 1
     return keeper
 
+def curry2(h):
+    def f(x):
+        def g(y):
+            return h(x, y)
+        return g
+    return f
+
+curry2 = lambda h: lambda x: lambda y: h(x, y)
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()

@@ -64,6 +64,10 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
+    if m == 1 or n == 1:
+        return 1
+    else:
+        return paths(m-1, n) + paths(m, n-1)
 
 
 
@@ -141,4 +145,9 @@ def add_chars(w1, w2):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    if len(w1) == 0:
+        return w2[:]
+    elif w1[0] == w2[0]:
+        return add_chars(w1[1:], w2[1:])
+    else:
+        return w2[0] + add_chars(w1[:], w2[1:])

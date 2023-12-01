@@ -18,6 +18,14 @@ def choose(paragraphs, select, k):
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
     # END PROBLEM 1
+    para_temp = []
+    for paragraph in paragraphs:
+        if select(paragraph):
+            para_temp.append(paragraph)
+    if k < len(para_temp):
+        return para_temp[k]
+    else:
+        return ''
 
 
 def about(topic):

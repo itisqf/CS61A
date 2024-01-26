@@ -69,9 +69,21 @@ def accuracy(typed, reference):
     0.0
     """
     typed_words = split(typed)
+    len_typed = len(typed_words)
     reference_words = split(reference)
+    len_ref = len(reference_words)
+    min_len = min(len_typed, len_ref)
     # BEGIN PROBLEM 3
+    # 长度标准选择typed
     "*** YOUR CODE HERE ***"
+    right_words = 0
+    for i in range(min_len):
+        if typed_words[i] == reference_words[i]:
+            right_words+=1
+    if len_typed == 0:
+        return 0.0
+    return right_words/len_typed * 100
+
     # END PROBLEM 3
 
 

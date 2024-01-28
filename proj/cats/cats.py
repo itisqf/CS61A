@@ -123,31 +123,42 @@ def shifty_shifts(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    if limit < 0:
+        return 0
+    elif start == '' or goal == '':
+        return max(len(start), len(goal))
+    else:
+        if start[0] != goal[0]:
+            return 1 + shifty_shifts(start[1:], goal[1:], limit - 1)
+        else:
+            return shifty_shifts(start[1:], goal[1:], limit)
     # END PROBLEM 6
 
 
 def pawssible_patches(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
-    assert False, 'Remove this line'
+    #assert False, 'Remove this line'
 
-    if ______________: # Fill in the condition
+    if limit < 0: # Fill in the condition
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return 0
         # END
 
-    elif ___________: # Feel free to remove or add additional cases
+    elif start == '' or goal == '': # Feel free to remove or add additional cases
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return max(len(start), len(goal))
         # END
-
+    elif start[0] == goal[0]:
+        return pawssible_patches(start[1:], goal[1:], limit)
     else:
-        add_diff = ... # Fill in these lines
-        remove_diff = ...
-        substitute_diff = ...
+        add_diff = pawssible_patches(start, goal[1:], limit - 1) # Fill in these lines
+        remove_diff = pawssible_patches(start[1:], goal, limit - 1)
+        substitute_diff = pawssible_patches(start[1:], goal[1:], limit - 1)
         # BEGIN
         "*** YOUR CODE HERE ***"
-        # END
+        return 1 + min(add_diff, remove_diff, substitute_diff)
 
 
 def final_diff(start, goal, limit):
@@ -164,6 +175,15 @@ def report_progress(typed, prompt, user_id, send):
     """Send a report of your id and progress so far to the multiplayer server."""
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    index = 0
+    for words in typed:
+        if words == prompt[index]:
+            index += 1
+        else:
+            break
+    ratio = index / len(prompt)
+    send({'id': user_id, 'progress': ratio})
+    return ratio
     # END PROBLEM 8
 
 

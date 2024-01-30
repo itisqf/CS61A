@@ -210,8 +210,16 @@ def time_per_word(times_per_player, words):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    times = []
+    for i in range(len(times_per_player)):
+        times.append([])
+        for j in range(len(words)):
+            times[i].append(times_per_player[i][j+1]-times_per_player[i][j])
+    return game(words, times)
     # END PROBLEM 9
-
+    # times_per_player是时间戳，里面有i个元素，代表有几个player
+    # 每i个元素又有j个时间戳, j的长度是words长度+1
+    # 现创建一个list: times，同样有i个元素，但是每个i的长度是words的长度
 
 def fastest_words(game):
     """Return a list of lists of which words each player typed fastest.
@@ -225,7 +233,22 @@ def fastest_words(game):
     word_indices = range(len(all_words(game)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
+    fastest_list = []
+    for player in player_indices:
+        fastest_list.append([])
+    fastest_man = 0
+    min_time = float('inf')
+    for word in word_indices:
+        for player in player_indices:
+            if time(game, player, word) < min_time:
+                min_time = time(game, player, word)
+                fastest_man = player
+        fastest_list[fastest_man].append(word_at(game, word))
+        min_time = float('inf')
+    return fastest_list
+        
     # END PROBLEM 10
+    # 需要比对当前word中，3个player的哪个最小
 
 
 def game(words, times):

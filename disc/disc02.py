@@ -1,4 +1,3 @@
-import doctest
 """Q1.1: Write a function that takes in a function and a number n
     and prints numbers from 1 to n where calling cond on that number
     returns True."""

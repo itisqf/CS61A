@@ -12,7 +12,7 @@ def couple(s, t):
     """
     assert len(s) == len(t)
     "*** YOUR CODE HERE ***"
-
+    return [[s[i], t[i]] for i in range(len(s))]
 
 from math import sqrt
 def distance(city_a, city_b):
@@ -27,6 +27,9 @@ def distance(city_a, city_b):
     5.0
     """
     "*** YOUR CODE HERE ***"
+    lat_dif = get_lat(city_a) - get_lat(city_b)
+    lot_dif = get_lon(city_a) - get_lon(city_b)
+    return sqrt(lat_dif*lat_dif + lot_dif*lot_dif)
 
 def closer_city(lat, lon, city_a, city_b):
     """
@@ -44,6 +47,10 @@ def closer_city(lat, lon, city_a, city_b):
     'Bucharest'
     """
     "*** YOUR CODE HERE ***"
+    my_city = make_city('my_city', lat, lon)
+    dis_a = distance(my_city, city_a)
+    dis_b = distance(my_city, city_b)
+    return get_name(city_a) if dis_a < dis_b else get_name(city_b)
 
 def check_city_abstraction():
     """
